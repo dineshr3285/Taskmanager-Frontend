@@ -21,7 +21,7 @@
                  <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Description</th>
+                        <th class="width-40">Description</th>
                         <th>Status</th>
                         <th>Created AT</th>
                         <th>Action</th>
@@ -30,7 +30,8 @@
                  <tbody v-if="tasks.length > 0">
                     <tr v-for="(task, index) in tasks" :key="task.id" :task="task">
                         <td>{{ task.title }}</td>
-                        <td>{{ task.description }}</td>
+                        <td v-if="task.description.length > 50">{{ task.description.substr(0, 50) }}..</td>
+                        <td v-else>{{ task.description }}</td>
                         <td v-if="task.is_completed == 0">Active</td>
                         <td v-else>Completed</td>
                         <td>{{ task.created_at_time }}</td>
